@@ -12,14 +12,6 @@ export interface Props {
 const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {
-    // optimisticResponse: {
-    //   __typename: 'Mutation',
-    //   addTodo: {
-    //     __typename: 'Todo',
-    //     id: 'erwcwe',
-    //     type
-    //   }
-    // },
     update: (store, { data: { addTodo } }) => {
       const data: any = store.readQuery({ query: GET_TODOS });
       store.writeQuery({
@@ -52,7 +44,18 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
     setType('');
     isEditing
       ? updateTodo({ variables: { id, type } })
-      : addTodo({ variables: { type } });
+      : addTodo({
+          variables: { type },
+          optimisticResponse: {
+            __typename: 'Mutation',
+            addTodo: {
+              __typename: 'Todo',
+              // id: Math.round(Math.random() * -1000000),
+              id: 'optimistic',
+              type
+            }
+          }
+        });
   };
 
   return (

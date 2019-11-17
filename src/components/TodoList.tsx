@@ -27,7 +27,11 @@ const TodoList: React.FC = () => {
               style={{ justifyContent: 'space-between' }}
               key={todo.id}
             >
-              <Todo id={todo.id} type={todo.type} />
+              <div
+                style={{ opacity: todo.id === 'optimistic' ? '45%' : '100%' }}
+              >
+                <Todo id={todo.id} type={todo.type} />
+              </div>
               <Link style={{ float: 'right' }} to={`/todo/${todo.id}`}>
                 View
               </Link>
