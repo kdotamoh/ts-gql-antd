@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { useQuery } from '@apollo/react-hooks';
+import { List } from 'antd';
 
 import Todo from 'components/Todo';
 import { GET_TODOS } from 'queries';
@@ -13,16 +14,19 @@ const TodoList: React.FC = () => {
 
   return (
     <div>
-      {data.todos.length ? (
-        data.todos.map((todo: { id: string; type: string }) => (
-          <React.Fragment key={todo.id}>
+      <List
+        locale={{ emptyText: "You haven't added any todos." }}
+        dataSource={data.todos}
+        itemLayout="horizontal"
+        renderItem={(todo: { id: string; type: string }) => (
+          <List.Item style={{ justifyContent: 'space-between' }} key={todo.id}>
             <Todo id={todo.id} type={todo.type} />
-            <Link to={`/todo/${todo.id}`}>View todo</Link>
-          </React.Fragment>
-        ))
-      ) : (
-        <div>No todos</div>
-      )}
+            <Link style={{ float: 'right' }} to={`/todo/${todo.id}`}>
+              View
+            </Link>
+          </List.Item>
+        )}
+      />
     </div>
   );
 };

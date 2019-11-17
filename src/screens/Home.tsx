@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
+import { Card } from 'antd';
 
 import TodoList from 'components/TodoList';
 import AddTodo from 'components/AddTodo';
@@ -7,8 +8,10 @@ import AddTodo from 'components/AddTodo';
 const Home: React.FC<RouteComponentProps> = () => {
   return (
     <div>
-      <TodoList />
       <AddTodo />
+      <Card title="Your todos">
+        <TodoList />
+      </Card>
     </div>
   );
 };
