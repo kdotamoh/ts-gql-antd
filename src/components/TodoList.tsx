@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Link } from '@reach/router';
 import { useQuery } from '@apollo/react-hooks';
 import { List } from 'antd';
@@ -18,7 +18,7 @@ const TodoList: React.FC = () => {
         locale={{ emptyText: "You haven't added any todos." }}
         dataSource={data.todos}
         itemLayout="horizontal"
-        renderItem={(todo: { id: string; type: string }) => (
+        renderItem={(todo: { id: string; type: string }): ReactNode => (
           <List.Item style={{ justifyContent: 'space-between' }} key={todo.id}>
             <Todo id={todo.id} type={todo.type} />
             <Link style={{ float: 'right' }} to={`/todo/${todo.id}`}>

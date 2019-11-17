@@ -2,18 +2,28 @@ import React, { useState, FormEvent } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Input, Button, Row, Col } from 'antd';
 
-import { GET_TODOS, ADD_TODO } from '../queries';
+import { GET_TODOS, GET_TODO, ADD_TODO, UPDATE_TODO } from '../queries';
 
-const AddTodo: React.FC = () => {
+export interface Props {
+  isEditing: boolean;
+  id: string;
+}
+
+const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {
     refetchQueries: [{ query: GET_TODOS }]
+  });
+  const [updateTodo] = useMutation(UPDATE_TODO, {
+    refetchQueries: [{ query: GET_TODO, variables: { id } }]
   });
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     setType('');
-    addTodo({ variables: { type } });
+    isEditing
+      ? updateTodo({ variables: { id, type } })
+      : addTodo({ variables: { type } });
   };
 
   return (
@@ -21,7 +31,9 @@ const AddTodo: React.FC = () => {
       <Row gutter={16} type="flex" justify="space-between">
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Input
-            placeholder="What would you like to do next?"
+            placeholder={
+              isEditing ? 'Update todo' : 'What would you like to do next?'
+            }
             value={type}
             onChange={(event): void => {
               setType(event.target.value);
@@ -36,7 +48,7 @@ const AddTodo: React.FC = () => {
             disabled={type ? false : true}
             block
           >
-            Add Todo
+            {isEditing ? 'Update todo' : 'Add Todo'}
           </Button>
         </Col>
       </Row>

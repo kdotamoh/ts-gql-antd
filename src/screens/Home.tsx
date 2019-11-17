@@ -8,7 +8,7 @@ import AddTodo from 'components/AddTodo';
 const Home: React.FC<RouteComponentProps> = () => {
   return (
     <div>
-      <AddTodo />
+      <AddTodo isEditing={false} id="" />
       <Card title="Your todos">
         <TodoList />
       </Card>
