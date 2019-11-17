@@ -37,7 +37,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
       message.error('Something went wrong. Please try again.');
     }
   });
-  const [updateTodo] = useMutation(UPDATE_TODO, {
+  const [updateTodo, { loading: updateLoading }] = useMutation(UPDATE_TODO, {
     refetchQueries: [{ query: GET_TODO, variables: { id } }],
     onCompleted: (): void => {
       message.success('Todo updated!');
@@ -73,7 +73,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
           <Button
             type="primary"
             htmlType="submit"
-            loading={loading}
+            loading={isEditing ? updateLoading : loading}
             disabled={type ? false : true}
             block
           >
