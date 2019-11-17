@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Input, Button, Row, Col } from 'antd';
+import { Input, Button, Row, Col, message } from 'antd';
 
 import { GET_TODOS, GET_TODO, ADD_TODO, UPDATE_TODO } from '../queries';
 
@@ -12,10 +12,22 @@ export interface Props {
 const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {
-    refetchQueries: [{ query: GET_TODOS }]
+    refetchQueries: [{ query: GET_TODOS }],
+    onCompleted: (): void => {
+      message.success('Todo added!');
+    },
+    onError: (): void => {
+      message.error('Something went wrong. Please try again.');
+    }
   });
   const [updateTodo] = useMutation(UPDATE_TODO, {
-    refetchQueries: [{ query: GET_TODO, variables: { id } }]
+    refetchQueries: [{ query: GET_TODO, variables: { id } }],
+    onCompleted: (): void => {
+      message.success('Todo updated!');
+    },
+    onError: (): void => {
+      message.error('Something went wrong. Please try again.');
+    }
   });
 
   const handleSubmit = (event: FormEvent): void => {
@@ -32,7 +44,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Input
             placeholder={
-              isEditing ? 'Update todo' : 'What would you like to do next?'
+              isEditing ? 'Update todo' : 'What would you like to do?'
             }
             value={type}
             onChange={(event): void => {

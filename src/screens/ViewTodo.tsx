@@ -1,9 +1,9 @@
-import React, { useState, FormEvent } from 'react';
+import React from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { Card } from 'antd';
 
-import { GET_TODO, UPDATE_TODO } from 'queries';
+import { GET_TODO } from 'queries';
 import Todo from 'components/Todo';
 import AddTodo from 'components/AddTodo';
 
