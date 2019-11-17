@@ -34,3 +34,10 @@ code {
 .mb-3rem {
   margin-bottom: 3rem;
 }
+
+.loading-container {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  margin: 20px 0;
+}
