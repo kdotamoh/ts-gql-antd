@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -9,6 +8,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 import 'antd/dist/antd.css';
+import './index.css';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
