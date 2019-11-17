@@ -12,7 +12,24 @@ export interface Props {
 const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {
-    refetchQueries: [{ query: GET_TODOS }],
+    // optimisticResponse: {
+    //   __typename: 'Mutation',
+    //   addTodo: {
+    //     __typename: 'Todo',
+    //     id: 'erwcwe',
+    //     type
+    //   }
+    // },
+    update: (store, { data: { addTodo } }) => {
+      const data: any = store.readQuery({ query: GET_TODOS });
+      store.writeQuery({
+        query: GET_TODOS,
+        data: {
+          ...data,
+          todos: [addTodo, ...data.todos]
+        }
+      });
+    },
     onCompleted: (): void => {
       message.success('Todo added!');
     },
