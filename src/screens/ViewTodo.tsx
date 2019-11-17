@@ -1,7 +1,7 @@
 import React from 'react';
-import { RouteComponentProps } from '@reach/router';
+import { Link, RouteComponentProps } from '@reach/router';
 import { useQuery } from '@apollo/react-hooks';
-import { Card, Spin } from 'antd';
+import { Card, Spin, Breadcrumb } from 'antd';
 
 import { GET_TODO } from 'queries';
 import Todo from 'components/Todo';
@@ -15,21 +15,29 @@ const ViewTodo: React.FC<Props> = ({ id }) => {
   if (error) return <p>ERROR: {error.message}</p>;
 
   return (
-    <Card title="View todo">
-      {loading ? (
-        <div className="loading-container">
-          <Spin />
-        </div>
-      ) : (
-        <React.Fragment>
-          <div style={{ fontSize: '150%', textAlign: 'center' }}>
-            <Todo id={data.todo.id} type={data.todo.type} />
+    <React.Fragment>
+      <Breadcrumb separator="•" className="mb-3rem">
+        <Breadcrumb.Item>
+          <Link to="/">Home</Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>Todo</Breadcrumb.Item>
+      </Breadcrumb>
+      <Card title="View todo">
+        {loading ? (
+          <div className="loading-container">
+            <Spin />
           </div>
-          <div className="mb-3rem" />
-          <AddTodo isEditing={true} id={data.todo.id} />
-        </React.Fragment>
-      )}
-    </Card>
+        ) : (
+          <React.Fragment>
+            <div style={{ fontSize: '150%', textAlign: 'center' }}>
+              <Todo id={data.todo.id} type={data.todo.type} />
+            </div>
+            <div className="mb-3rem" />
+            <AddTodo isEditing={true} id={data.todo.id} />
+          </React.Fragment>
+        )}
+      </Card>
+    </React.Fragment>
   );
 };
 
