@@ -1,9 +1,13 @@
 import React from 'react';
+import { Router } from '@reach/router';
+import Home from 'screens/Home';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <div>React App</div>
+      <Router>
+        <Home path="/" />
+      </Router>
     </div>
   );
 };
