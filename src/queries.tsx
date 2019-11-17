@@ -9,4 +9,13 @@ const GET_TODOS = gql`
   }
 `;
 
-export { GET_TODOS };
+const ADD_TODO = gql`
+  mutation AddTodo($type: String!) {
+    addTodo(type: $type) {
+      id
+      type
+    }
+  }
+`;
+
+export { GET_TODOS, ADD_TODO };
