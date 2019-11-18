@@ -33,7 +33,10 @@ const TodoList: React.FC = () => {
               <div>
                 <Todo id={todo.id} type={todo.type} />
               </div>
-              <Link style={{ float: 'right' }} to={`/todo/${todo.id}`}>
+              <Link
+                style={{ float: 'right' }}
+                to={todo.id === 'optimistic' ? '/' : `/todo/${todo.id}`}
+              >
                 View
               </Link>
             </List.Item>

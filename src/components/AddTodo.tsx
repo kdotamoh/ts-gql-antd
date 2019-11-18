@@ -51,7 +51,6 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
             __typename: 'Mutation',
             addTodo: {
               __typename: 'Todo',
-              // id: Math.round(Math.random() * -1000),
               id: 'optimistic',
               type
             }
@@ -76,7 +75,6 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={4}>
           <Button
-            data-testid="submit-button"
             type="primary"
             htmlType="submit"
             loading={isEditing ? updateLoading : loading}
