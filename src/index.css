@@ -41,3 +41,9 @@ code {
   padding: 30px 50px;
   margin: 20px 0;
 }
+
+@media (min-width: 768px) {
+  .container {
+    width: 60%;
+  }
+}
