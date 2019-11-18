@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const Todo: React.FC<Props> = ({ type }) => {
-  return <div>{type}</div>;
+  return <div data-testid="todo">{type}</div>;
 };
 
 export default Todo;
