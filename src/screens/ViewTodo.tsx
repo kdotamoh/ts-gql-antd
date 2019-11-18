@@ -33,7 +33,7 @@ const ViewTodo: React.FC<Props> = ({ id }) => {
               <Todo id={data.todo.id} type={data.todo.type} />
             </div>
             <div className="mb-3rem" />
-            <AddTodo isEditing={true} id={data.todo.id} />
+            <AddTodo isEditing id={data.todo.id} />
           </React.Fragment>
         )}
       </Card>

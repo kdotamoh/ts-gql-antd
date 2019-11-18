@@ -10,6 +10,8 @@ import { HttpLink } from 'apollo-link-http';
 import 'antd/dist/antd.css';
 import './index.css';
 
+// TODO: use babel-plugin-import to remove unused antd packages
+
 const cache = new InMemoryCache();
 const link = new HttpLink({
   uri: `${process.env.REACT_APP_BASE_URI}`

@@ -5,7 +5,7 @@ import { Input, Button, Row, Col, message } from 'antd';
 import { GET_TODOS, GET_TODO, ADD_TODO, UPDATE_TODO } from '../queries';
 
 export interface Props {
-  isEditing: boolean;
+  isEditing?: boolean;
   id: string;
 }
 
@@ -13,6 +13,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {
     update: (store, { data: { addTodo } }) => {
+      // Todo: fix any
       const data: any = store.readQuery({ query: GET_TODOS });
       store.writeQuery({
         query: GET_TODOS,
@@ -50,7 +51,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
             __typename: 'Mutation',
             addTodo: {
               __typename: 'Todo',
-              // id: Math.round(Math.random() * -1000000),
+              // id: Math.round(Math.random() * -1000),
               id: 'optimistic',
               type
             }
@@ -63,6 +64,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
       <Row gutter={16} type="flex" justify="space-between">
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Input
+            style={{ marginBottom: '1rem' }}
             placeholder={
               isEditing ? 'Update todo' : 'What would you like to do?'
             }
