@@ -24,12 +24,13 @@ const TodoList: React.FC = () => {
           itemLayout="horizontal"
           renderItem={(todo: { id: string; type: string }): ReactNode => (
             <List.Item
-              style={{ justifyContent: 'space-between' }}
+              style={{
+                justifyContent: 'space-between',
+                opacity: todo.id === 'optimistic' ? '45%' : '100%'
+              }}
               key={todo.id}
             >
-              <div
-                style={{ opacity: todo.id === 'optimistic' ? '45%' : '100%' }}
-              >
+              <div>
                 <Todo id={todo.id} type={todo.type} />
               </div>
               <Link style={{ float: 'right' }} to={`/todo/${todo.id}`}>
