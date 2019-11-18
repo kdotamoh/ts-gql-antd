@@ -6,7 +6,7 @@ import { GET_TODOS, GET_TODO, ADD_TODO, UPDATE_TODO } from '../queries';
 
 export interface Props {
   isEditing?: boolean;
-  id: string;
+  id?: string;
 }
 
 const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
@@ -60,7 +60,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-3rem">
+    <form data-testid="form" onSubmit={handleSubmit} className="mb-3rem">
       <Row gutter={16} type="flex" justify="space-between">
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Input
@@ -76,6 +76,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={4}>
           <Button
+            data-testid="submit-button"
             type="primary"
             htmlType="submit"
             loading={isEditing ? updateLoading : loading}
