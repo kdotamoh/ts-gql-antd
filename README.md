@@ -14,7 +14,7 @@ You can also view the app on CodeSandbox:
 
 Clone the repo:
 
-```
+```sh
 git clone https://github.com/kdotamoh/ts-gql-antd.git
 ```
 
