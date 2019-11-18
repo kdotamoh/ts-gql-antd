@@ -9,6 +9,11 @@ export interface Props {
   id?: string;
 }
 
+interface Todo {
+  id: string;
+  type: string;
+}
+
 const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
   const [type, setType] = useState('');
   const [addTodo, { loading }] = useMutation(ADD_TODO, {

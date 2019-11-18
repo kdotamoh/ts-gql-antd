@@ -9,6 +9,11 @@ import AddTodo from 'components/AddTodo';
 
 export type Props = RouteComponentProps<{ id: string }>;
 
+interface Todo {
+  id: string;
+  type: string;
+}
+
 const ViewTodo: React.FC<Props> = ({ id }) => {
   const { data, loading, error } = useQuery(GET_TODO, { variables: { id } });
 

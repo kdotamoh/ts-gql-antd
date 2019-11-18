@@ -6,14 +6,22 @@ import { List, Spin } from 'antd';
 import Todo from 'components/Todo';
 import { GET_TODOS } from 'queries';
 
+interface Todo {
+  id: string;
+  type: string;
+}
+interface Todos {
+  todos: Todo[];
+}
+
 const TodoList: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_TODOS);
+  const { data, loading, error } = useQuery<Todos>(GET_TODOS);
 
   if (error) return <p>ERROR: {error.message}</p>;
 
   return (
     <div>
-      {loading ? (
+      {!data || loading ? (
         <div className="loading-container">
           <Spin />
         </div>
