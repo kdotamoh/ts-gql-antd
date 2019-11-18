@@ -30,7 +30,7 @@ or install with npm:
 cd ts-gql-antd && npm i
 ```
 
-Create a .env file in the root directory and set the base URI:
+Rename the .env.sample file in the root directory to .env and set the base URI:
 
 ```
 REACT_APP_BASE_URI=<your-base-uri>
