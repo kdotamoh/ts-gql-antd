@@ -15,7 +15,7 @@ You can also view the app on CodeSandbox:
 Clone the repo:
 
 ```
-https://github.com/kdotamoh/ts-gql-antd.git
+git clone https://github.com/kdotamoh/ts-gql-antd.git
 ```
 
 Go to the project directory and install dependencies:
