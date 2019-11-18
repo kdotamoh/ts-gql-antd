@@ -86,7 +86,7 @@ const AddTodo: React.FC<Props> = ({ isEditing, id }) => {
             disabled={type ? false : true}
             block
           >
-            {isEditing ? 'Update todo' : 'Add Todo'}
+            {isEditing ? 'Update' : 'Add'}
           </Button>
         </Col>
       </Row>

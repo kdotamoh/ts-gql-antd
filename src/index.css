@@ -42,8 +42,17 @@ code {
   margin: 5px 0;
 }
 
+.add-todos__container {
+  margin: 0 auto;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .container {
+    width: 70%;
+  }
+
+  .add-todos__container {
     width: 60%;
   }
 }
