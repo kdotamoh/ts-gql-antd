@@ -30,7 +30,11 @@ const ViewTodo: React.FC<Props> = ({ id }) => {
         ) : (
           <React.Fragment>
             <div style={{ fontSize: '150%', textAlign: 'center' }}>
-              <Todo id={data.todo.id} type={data.todo.type} />
+              <Todo
+                data-testid="view-todo"
+                id={data.todo.id}
+                type={data.todo.type}
+              />
             </div>
             <div className="mb-3rem" />
             <AddTodo isEditing id={data.todo.id} />
